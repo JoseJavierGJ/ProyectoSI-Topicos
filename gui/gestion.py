@@ -5,4 +5,4 @@ class GestionWindow():
   def __init__(self):
     self.main = uic.loadUi("gui/gestion.ui")
     # self.initGUI()
-    self.main.showMaximized()
+    self.main.show()

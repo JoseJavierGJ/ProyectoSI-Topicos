@@ -2,6 +2,7 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox, QLineEdit
 
 from data.usuario import UsuarioData
+from gui.atencion import AtencionWindow
 from gui.main import MainWindow
 from gui.logistica import LogisticaWindow
 from gui.gestion import GestionWindow
@@ -37,6 +38,9 @@ class Login():
           self.logistica = LogisticaWindow()
         elif rol == 'administrador':
           self.main = MainWindow()
+        elif rol == 'atencion':
+          self.atencion = AtencionWindow()
+          self.atencion.show() 
         else:
           QMessageBox.warning(self.login, "Error", "Rol no válido")
           return

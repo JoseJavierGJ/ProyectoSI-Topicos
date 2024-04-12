@@ -16,17 +16,17 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>100</y>
-     <width>421</width>
-     <height>381</height>
+     <x>50</x>
+     <y>70</y>
+     <width>211</width>
+     <height>261</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../../../../../../Desktop/cat.png</pixmap>
+    <pixmap>../img/gatp-g.jpg</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -35,37 +35,23 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>40</x>
      <y>10</y>
-     <width>451</width>
-     <height>31</height>
+     <width>231</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>21</pointsize>
+     <family>Comic Sans MS</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Que chinguen a su madre todos</string>
+    <string>Departamento de Gestión</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>221</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>21</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Tarea super kk</string>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

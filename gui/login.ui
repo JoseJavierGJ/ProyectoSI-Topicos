@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>402</width>
-    <height>300</height>
+    <height>450</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>402</width>
-    <height>300</height>
+    <height>450</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>402</width>
-    <height>300</height>
+    <height>450</height>
    </size>
   </property>
   <property name="cursor">
@@ -29,13 +29,13 @@
    <string>Inicio de Sesión</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true"/>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>10</y>
+     <x>100</x>
+     <y>90</y>
      <width>231</width>
      <height>51</height>
     </rect>
@@ -56,8 +56,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>80</y>
+     <x>150</x>
+     <y>160</y>
      <width>121</width>
      <height>16</height>
     </rect>
@@ -81,8 +81,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>120</y>
+     <x>80</x>
+     <y>200</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -106,8 +106,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>160</y>
+     <x>60</x>
+     <y>240</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -122,7 +122,7 @@
     <string notr="true">background-color: transparent;</string>
    </property>
    <property name="text">
-    <string>Coontraseña</string>
+    <string>Contraseña</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -131,8 +131,8 @@
   <widget class="QLineEdit" name="txtUsuario">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>120</y>
+     <x>140</x>
+     <y>200</y>
      <width>151</width>
      <height>21</height>
     </rect>
@@ -143,7 +143,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="placeholderText">
     <string>Ingrese un usuario</string>
@@ -152,8 +152,8 @@
   <widget class="QLineEdit" name="txtClave">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>160</y>
+     <x>140</x>
+     <y>240</y>
      <width>151</width>
      <height>21</height>
     </rect>
@@ -162,6 +162,9 @@
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
@@ -173,8 +176,8 @@
   <widget class="QPushButton" name="btnAcceder">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>220</y>
+     <x>170</x>
+     <y>300</y>
      <width>75</width>
      <height>24</height>
     </rect>
@@ -200,8 +203,8 @@ border-radius: 8px;</string>
   <widget class="QLabel" name="lblMensaje">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>260</y>
+     <x>10</x>
+     <y>340</y>
      <width>391</width>
      <height>20</height>
     </rect>
@@ -228,8 +231,8 @@ background-color: transparent;</string>
   <widget class="QCheckBox" name="check_view_password">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>190</y>
+     <x>140</x>
+     <y>270</y>
      <width>101</width>
      <height>20</height>
     </rect>
@@ -244,6 +247,70 @@ background-color: transparent;</string>
     <string>Ver contraseña</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>321</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15%;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>161</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 25px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../../../../../../Desktop/Captura de pantalla 2024-04-11 134640.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>401</width>
+     <height>451</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 133, 51);</string>
+   </property>
+  </widget>
+  <zorder>lineEdit</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_7</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>txtUsuario</zorder>
+  <zorder>txtClave</zorder>
+  <zorder>btnAcceder</zorder>
+  <zorder>lblMensaje</zorder>
+  <zorder>check_view_password</zorder>
  </widget>
  <resources/>
  <connections/>
