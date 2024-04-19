@@ -9,7 +9,7 @@ from conexion_atencion import Comunicacion
 class AtencionWindow(QMainWindow):
   def __init__(self):
     super(AtencionWindow, self).__init__()
-    loadUi('gui/atencion2.ui', self)
+    loadUi('gui/atencion.ui', self)
     # self.main = uic.loadUi("gui/atencion2.ui")
     # self.main.show()
     

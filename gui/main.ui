@@ -6,49 +6,51 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>552</width>
+    <width>800</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>main</string>
+   <string>Banco - Transferencias</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QPushButton" name="btnRegistrar_Transferencias_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>81</width>
-      <height>21</height>
+      <x>30</x>
+      <y>70</y>
+      <width>161</width>
+      <height>51</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
     <property name="text">
-     <string>Admin</string>
+     <string>Registro de transferencias</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QPushButton" name="btnReportar_Tranferencia_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>201</width>
-      <height>241</height>
+      <x>30</x>
+      <y>140</y>
+      <width>161</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Reporte de Transferencia</string>
     </property>
-    <property name="pixmap">
-     <pixmap>../img/dog-a.jpg</pixmap>
+   </widget>
+   <widget class="QPushButton" name="btnHistorial_de_Tranferencias_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>210</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
     </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+    <property name="text">
+     <string>Historial de Transferencias</string>
     </property>
    </widget>
   </widget>
@@ -57,12 +59,51 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>552</width>
+     <width>800</width>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="btnRegistrar_Transferencias"/>
+    <addaction name="btnReportar_Tranferencia"/>
+    <addaction name="btnHistorial_de_Tranferencias"/>
+   </widget>
+   <widget class="QMenu" name="menuCreditos">
+    <property name="title">
+     <string>Créditos</string>
+    </property>
+    <addaction name="actionDesarrolladores"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="menuCreditos"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDesarrolladores">
+   <property name="text">
+    <string>Desarrolladores</string>
+   </property>
+  </action>
+  <action name="btnRegistrar_Transferencias">
+   <property name="text">
+    <string>Registrar Tranferencias</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="btnReportar_Tranferencia">
+   <property name="text">
+    <string>Reportar Tranferencia</string>
+   </property>
+  </action>
+  <action name="btnHistorial_de_Tranferencias">
+   <property name="text">
+    <string>Historial de Tranferencias</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
