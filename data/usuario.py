@@ -2,6 +2,18 @@ import conexion as con
 from model.usuario import Usuario
 
 class UsuarioData():
+
+  def __init__(self):
+    try:
+      self.db = con.Conexion().conectar()
+      self.cursor = self.db.cursor()
+      sql_insert = """ INSERT INTO usuarios values(null,'{}','{}','{}')""".format("atencion", "atencion", "123456")
+      self.cursor.execute(sql_insert)
+      self.db.commit()
+    except Exception as ex:
+      print("Ya se creo el usuario admin", ex)
+
+
   def login(self, usuario:Usuario):
     self.db = con.Conexion().conectar()
     self.cursor = self.db.cursor()

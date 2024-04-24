@@ -611,8 +611,8 @@ background-color: rgb(238, 238, 238);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(240, 165, 142);
-color: rgb(240, 99, 99);</string>
+    <string notr="true">color: rgb(240, 99, 99);
+color: rgb(255, 132, 128);</string>
    </property>
    <property name="text">
     <string>Los campos con asteristo (*) son obligatorios</string>

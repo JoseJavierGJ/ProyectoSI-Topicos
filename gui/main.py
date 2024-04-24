@@ -1,8 +1,11 @@
-from PyQt6 import uic 
+from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtCore import QDate
 
-from model.movimientos import Transferencia
+from data.ciudad import CiudadData
+from model.movimientos import DepositoInternacional, Transferencia
 from data.transferencia import TransferenciaData
+from data.deposito import DepositoData
 
 class MainWindow():
   def __init__(self):
@@ -24,8 +27,9 @@ class MainWindow():
     self.registro.show()
 
   def abrirDeposito(self):
-    self.deposito.btnRegistrar.clicked.connect(self.registrarTransferencia)
+    self.deposito.btnRegistrar.clicked.connect(self.registrarDeposito)
     self.deposito.show()
+    self.llenarComboCiudades()
 
 
   ############## Tranferencias ##############
@@ -78,5 +82,74 @@ class MainWindow():
     self.registro.checkInternacional.setChecked(False)
     self.registro.txtDocumento.setFocus()
 
-  ############## Tranferencias ##############
+  def limpiarCamposDepositos(self):
+    self.registro.cbTipo.setCurrentIndex(0)
+    self.registro.cbMotivo.setCurrentIndex(0)
+    self.registro.cbSexo.setCurrentIndex(0)
+    self.registro.cbLugar.setCurrentIndex(0)
+    self.registro.txtDocumento.setText("")
+    self.registro.txtPrimerNombre.setText("")
+    self.registro.txtSegundoNombre.setText("")
+    self.registro.txtPrimerApellido.setText("")
+    self.registro.txtSegundoApellido.setText("")
+    miFecha = QDate(2001,9,11)
+    self.registro.txtFecha.setDate(miFecha)
+    self.registro.txtMonto.setText("0")
+    self.registro.checkTerminos.setChecked(False)
+    self.registro.txtDocumento.setFocus()
+
+  ############## Déposito ##############
+
+  def llenarComboCiudades(self):
+    objData = CiudadData()
+    datos = objData.listaCiudades()
+
+    for item in datos:
+      self.deposito.cbLugar.addItem(item[1])
+
+  def validadCamposObligatoris(self):
+    if not self.deposito.txtDocumento.text() or not self.deposito.txtPrimerNombre.text() or not self.deposito.txtPrimerApellido.text() or not self.deposito.txtMonto.text() or self.deposito.cbMotivo.currentText() == "--- Seleccione una opción" or self.deposito.cbLugar.currentText() == "--- Seleccione una opción" or self.deposito.cbSexo.currentText() == "--- Seleccione una opción" or self.deposito.cbTipo.currentText() == "--- Seleccione una opción":
+      return False
+    else:
+      return True
+
+  def registrarDeposito(self):
+    mBox = QMessageBox()
+    if not self.validadCamposObligatoris():
+      mBox.setText("Llenar los campos obligatorios (*)")
+      mBox.exec()
+    elif self.deposito.checkTerminos.isChecked() == False:
+      mBox.setText("Debe aceptar los términos")
+      mBox.exec()
+      self.deposito.checkTerminos.setFocus()
+    elif not self.deposito.txtMonto.text().isnumeric() or float(self.deposito.txtMonto.text()) < 1:
+      mBox.setText("El monto debe de ser mayo a cero")
+      self.deposito.txtMonto.setText("0")
+      mBox.exec() 
+      self.deposito.txtMonto.setFocus()
+    else:
+      fechaN = self.deposito.txtFecha.date().toPyDate()
+      deposito = DepositoInternacional(
+        tipo = self.deposito.cbTipo.currentText(),
+        documento = self.deposito.txtDocumento.text(),
+        monto = float(self.deposito.txtMonto.text()),
+        motivo = self.deposito.cbMotivo.currentText(),
+        sexo = self.deposito.cbSexo.currentText(),
+        lugarNacimiento = self.deposito.cbLugar.currentText(),
+        nombre1 = self.deposito.txtPrimerNombre.text(),
+        nombre2 = self.deposito.txtSegundoNombre.text(),
+        apellido1 = self.deposito.txtPrimerApellido.text(),
+        apellido2 = self.deposito.txtSegundoApellido.text(),
+        terminos = self.deposito.checkTerminos.isChecked(),
+        fechaNacimiento = fechaN
+      )
+      objData = DepositoData()
+      if objData.registrar(info = deposito):
+        mBox.setText("Deposito registrada")
+        mBox.exec()
+        self.limpiarCamposDepositos()
+      else:
+        mBox.setText("Deposito NO registrada")
+        mBox.exec()
+
 

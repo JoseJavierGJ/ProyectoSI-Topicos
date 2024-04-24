@@ -18,16 +18,16 @@ class Conexion():
     cur = self.con.cursor()
     cur.execute(sql_create_table1)
     cur.close()
-    self.crearAdmin()
+    # self.crearAdmin()
 
-  def crearAdmin(self):
-    try:
-      sql_insert = """ INSERT INTO usuarios values(null,'{}','{}','{}')""".format("atencion", "atencion", "123456")
-      cur = self.con.cursor()
-      cur.execute(sql_insert)
-      self.con.commit()
-    except Exception as ex:
-      print("Ya se creo el usuario admin", ex)
-# con = Conexion()
+#   def crearAdmin(self):
+#     try:
+#       sql_insert = """ INSERT INTO usuarios values(null,'{}','{}','{}')""".format("atencion", "atencion", "123456")
+#       cur = self.con.cursor()
+#       cur.execute(sql_insert)
+#       self.con.commit()
+#     except Exception as ex:
+#       print("Ya se creo el usuario admin", ex)
+# # con = Conexion()
   def conectar(self):
     return self.con
