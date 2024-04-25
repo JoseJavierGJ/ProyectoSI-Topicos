@@ -265,7 +265,7 @@ color: rgb(255, 132, 128);</string>
     <string>Hasta *</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="tblHistorial">
    <property name="geometry">
     <rect>
      <x>20</x>

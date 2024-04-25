@@ -1,5 +1,5 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtWidgets import QMessageBox, QTableWidgetItem
 from PyQt6.QtCore import QDate
 
 from data.ciudad import CiudadData
@@ -37,6 +37,10 @@ class MainWindow():
 
   def abrirHistorial(self):
     self.historial.btnBuscar.clicked.connect(self.buscar)
+    self.historial.tblHistorial.setColumnWidth(0,20)
+    self.historial.tblHistorial.setColumnWidth(1,230)
+    self.historial.tblHistorial.setColumnWidth(3,250)
+    self.historial.tblHistorial.setColumnWidth(4,120)
     self.historial.show()
     self.llenarTablaHistorial()
 
@@ -165,7 +169,26 @@ class MainWindow():
   def buscar(self):
     his = HistorialData()
     data = his.buscarPorFecha(self.historial.txtFechaDesde.date().toPyDate(),self.historial.txtFechaHasta.date().toPyDate(),self.historial.cbTipo.currentText(),self.historial.txtDocumento.text())
-    print(data)
+    fila = 0
+    self.historial.tblHistorial.setRowCount(len(data))
+    for item in data:
+      self.historial.tblHistorial.setItem(fila,0,QTableWidgetItem(str(item[0])))
+      self.historial.tblHistorial.setItem(fila,1,QTableWidgetItem("{} {} {} {}".format(str(item[10]),str(item[11]),str(item[12]),str(item[13]))))
+      if str(item[6]) == 'True':
+        self.historial.tblHistorial.setItem(fila,2,QTableWidgetItem("USD " + str(item[2])))
+      else:
+        self.historial.tblHistorial.setItem(fila,2,QTableWidgetItem("MXN " + str(item[2])))
+      if str(item[5]) == 'True':
+        self.historial.tblHistorial.setItem(fila,3,QTableWidgetItem("Internacional - " + (str(item[9]))))
+      else:
+        self.historial.tblHistorial.setItem(fila,3,QTableWidgetItem("Transferencia Nacional"))
+      self.historial.tblHistorial.setItem(fila,4,QTableWidgetItem(str(item[7])))
+      if str(item[17]) == 'True':
+        self.historial.tblHistorial.setItem(fila,5,QTableWidgetItem("Sí"))
+      else:
+        self.historial.tblHistorial.setItem(fila,5,QTableWidgetItem("No"))
+      fila = fila + 1
+
 
   def llenarTablaHistorial(self):
     pass
