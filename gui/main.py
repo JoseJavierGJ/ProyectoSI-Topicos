@@ -169,11 +169,16 @@ class MainWindow():
   def buscar(self):
     his = HistorialData()
     data = his.buscarPorFecha(self.historial.txtFechaDesde.date().toPyDate(),self.historial.txtFechaHasta.date().toPyDate(),self.historial.cbTipo.currentText(),self.historial.txtDocumento.text())
+    nombre = None
     fila = 0
     self.historial.tblHistorial.setRowCount(len(data))
     for item in data:
       self.historial.tblHistorial.setItem(fila,0,QTableWidgetItem(str(item[0])))
-      self.historial.tblHistorial.setItem(fila,1,QTableWidgetItem("{} {} {} {}".format(str(item[10]),str(item[11]),str(item[12]),str(item[13]))))
+      if nombre:
+        self.historial.tblHistorial.setItem(fila,1,QTableWidgetItem(nombre))
+      else:
+        self.historial.tblHistorial.setItem(fila,1,QTableWidgetItem("{} {} {} {}".format(str(item[10]),str(item[11]),str(item[12]),str(item[13]))))
+        nombre = "{} {} {} {}".format(str(item[10]),str(item[11]),str(item[12]),str(item[13]))
       if str(item[6]) == 'True':
         self.historial.tblHistorial.setItem(fila,2,QTableWidgetItem("USD " + str(item[2])))
       else:
