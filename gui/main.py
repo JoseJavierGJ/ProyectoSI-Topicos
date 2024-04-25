@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtCore import QDate
 
 from data.ciudad import CiudadData
+from data.historial import HistorialData
 from model.movimientos import DepositoInternacional, Transferencia
 from data.transferencia import TransferenciaData
 from data.deposito import DepositoData
@@ -18,9 +19,12 @@ class MainWindow():
     self.main.btnRegistrar_Transferencias_2.clicked.connect(self.abrirRegistro)
     self.main.btnRegistrar_Transferencias.triggered.connect(self.abrirRegistro)
     self.main.btnReportar_Tranferencia_2.clicked.connect(self.abrirDeposito)
-    self.main.btnReportar_Tranferencia.triggered.connect(self.abrirDeposito)
+    self.main.btnReportar_Tranferencia.triggered.connect(self.abrirDeposito)    
+    self.main.btnHistorial_Transferencias_2.clicked.connect(self.abrirHistorial)
+    self.main.btnHistorial_Transferencias.triggered.connect(self.abrirHistorial)
     self.registro = uic.loadUi("gui/registro.ui")
     self.deposito = uic.loadUi("gui/deposito.ui")
+    self.historial = uic.loadUi("gui/historial.ui")
 
   def abrirRegistro(self):
     self.registro.btnRegistrar.clicked.connect(self.registrarTransferencia)
@@ -31,6 +35,10 @@ class MainWindow():
     self.deposito.show()
     self.llenarComboCiudades()
 
+  def abrirHistorial(self):
+    self.historial.btnBuscar.clicked.connect(self.buscar)
+    self.historial.show()
+    self.llenarTablaHistorial()
 
   ############## Tranferencias ##############
   def registrarTransferencia(self):
@@ -80,22 +88,6 @@ class MainWindow():
     self.registro.txtMonto.setText("0")
     self.registro.checkDolares.setChecked(False)
     self.registro.checkInternacional.setChecked(False)
-    self.registro.txtDocumento.setFocus()
-
-  def limpiarCamposDepositos(self):
-    self.registro.cbTipo.setCurrentIndex(0)
-    self.registro.cbMotivo.setCurrentIndex(0)
-    self.registro.cbSexo.setCurrentIndex(0)
-    self.registro.cbLugar.setCurrentIndex(0)
-    self.registro.txtDocumento.setText("")
-    self.registro.txtPrimerNombre.setText("")
-    self.registro.txtSegundoNombre.setText("")
-    self.registro.txtPrimerApellido.setText("")
-    self.registro.txtSegundoApellido.setText("")
-    miFecha = QDate(2001,9,11)
-    self.registro.txtFecha.setDate(miFecha)
-    self.registro.txtMonto.setText("0")
-    self.registro.checkTerminos.setChecked(False)
     self.registro.txtDocumento.setFocus()
 
   ############## Déposito ##############
@@ -152,4 +144,30 @@ class MainWindow():
         mBox.setText("Deposito NO registrada")
         mBox.exec()
 
+  def limpiarCamposDepositos(self):
+    self.deposito.cbTipo.setCurrentIndex(0)
+    self.deposito.cbMotivo.setCurrentIndex(0)
+    self.deposito.cbSexo.setCurrentIndex(0)
+    self.deposito.cbLugar.setCurrentIndex(0)
+    self.deposito.txtDocumento.setText("")
+    self.deposito.txtPrimerNombre.setText("")
+    self.deposito.txtSegundoNombre.setText("")
+    self.deposito.txtPrimerApellido.setText("")
+    self.deposito.txtSegundoApellido.setText("")
+    miFecha = QDate(2001,1,1)
+    self.deposito.txtFecha.setDate(miFecha)
+    self.deposito.txtMonto.setText("0")
+    self.deposito.checkTerminos.setChecked(False)
+    self.deposito.txtDocumento.setFocus()
+
+
+  ############## Historial ##############
+  def buscar(self):
+    his = HistorialData()
+    data = his.buscarPorFecha(self.historial.txtFechaDesde.date().toPyDate(),self.historial.txtFechaHasta.date().toPyDate(),self.historial.cbTipo.currentText(),self.historial.txtDocumento.text())
+    print(data)
+
+  def llenarTablaHistorial(self):
+    pass
+ 
 

@@ -40,7 +40,7 @@
      <string>Reporte de Transferencia</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnHistorial_de_Tranferencias_2">
+   <widget class="QPushButton" name="btnHistorial_Transferencias_2">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -69,7 +69,7 @@
     </property>
     <addaction name="btnRegistrar_Transferencias"/>
     <addaction name="btnReportar_Tranferencia"/>
-    <addaction name="btnHistorial_de_Tranferencias"/>
+    <addaction name="btnHistorial_Transferencias"/>
    </widget>
    <widget class="QMenu" name="menuCreditos">
     <property name="title">
@@ -99,7 +99,7 @@
     <string>Reportar Tranferencia</string>
    </property>
   </action>
-  <action name="btnHistorial_de_Tranferencias">
+  <action name="btnHistorial_Transferencias">
    <property name="text">
     <string>Historial de Tranferencias</string>
    </property>

@@ -27,7 +27,7 @@ class TransferenciaData():
       print("Tabla transferencias OK", ex)
 
   def registrar(self, info:Transferencia):
-    fecha = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     self.db = con.Conexion().conectar()
     self.cursor = self.db.cursor()
     self.cursor.execute("""
