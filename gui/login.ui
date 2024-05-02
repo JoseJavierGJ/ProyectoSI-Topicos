@@ -146,7 +146,7 @@
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>admin</string>
+    <string>finanzas</string>
    </property>
    <property name="placeholderText">
     <string>Ingrese un usuario</string>

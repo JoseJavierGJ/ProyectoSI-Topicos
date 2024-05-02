@@ -1,6 +1,8 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox, QTableWidgetItem
 from PyQt6.QtCore import QDate
+from PyQt6.uic import loadUi
+
 
 from data.ciudad import CiudadData
 from data.historial import HistorialData
@@ -8,14 +10,15 @@ from model.movimientos import DepositoInternacional, Transferencia
 from data.transferencia import TransferenciaData
 from data.deposito import DepositoData
 
-class MainWindow():
+class FinanzasWindow():
   def __init__(self):
-    self.main = uic.loadUi("gui/main.ui")
+    self.main = uic.loadUi("gui/finanzas.ui")
     self.initGUI()
     # self.main.showMaximized()
     self.main.show()
 
   def initGUI(self):
+    self.main.btnSalir.clicked.connect(self.abrir_login)
     self.main.btnRegistrar_Transferencias_2.clicked.connect(self.abrirRegistro)
     self.main.btnRegistrar_Transferencias.triggered.connect(self.abrirRegistro)
     self.main.btnReportar_Tranferencia_2.clicked.connect(self.abrirDeposito)
@@ -26,6 +29,12 @@ class MainWindow():
     self.deposito = uic.loadUi("gui/deposito.ui")
     self.historial = uic.loadUi("gui/historial.ui")
 
+  def abrir_login(self):
+    self.main.close()
+    from gui.login import Login
+    self.login_window = Login()
+    
+        
   def abrirRegistro(self):
     self.registro.btnRegistrar.clicked.connect(self.registrarTransferencia)
     self.registro.show()

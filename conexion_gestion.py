@@ -2,12 +2,12 @@ import sqlite3
 
 class Comunicacion():
   def __init__(self):
-    self.conexion = sqlite3.connect('atencionCliente.db')
+    self.conexion = sqlite3.connect('gestion.db')
 
-  def inserta_llamada(self, orden, cliente, motivo, fecha, estado):
+  def inserta_llamada(self, tarjeta, cliente, tipo_tarjeta, saldo, estado):
     cursor = self.conexion.cursor()
-    bd = '''INSERT INTO tabla_datos (num_orden, cliente, motivo, fecha, estado)
-    VALUES('{}', '{}', '{}', '{}', '{}')'''.format(orden, cliente, motivo, fecha, estado)
+    bd = '''INSERT INTO tabla_datos (tarjeta, cliente, tipo_tarjeta, saldo, estado)
+    VALUES('{}', '{}', '{}', '{}', '{}')'''.format(tarjeta, cliente, tipo_tarjeta, saldo, estado)
     cursor.execute(bd)
     self.conexion.commit()
     cursor.close()
@@ -19,13 +19,14 @@ class Comunicacion():
     registro = cursor.fetchall()
     return registro
   
-  def busca_llamadas(self, numero_orden):
+  def busca_llamadas(self, numero_tarjeta):
     cursor = self.conexion.cursor()
-    bd = '''SELECT * FROM tabla_datos WHERE num_orden = {}'''.format(numero_orden)
+    bd = '''SELECT * FROM tabla_datos WHERE tarjeta = {}'''.format(numero_tarjeta)
     cursor.execute(bd)
-    nombreX = cursor.fetchall()
+    resultados = cursor.fetchall()
     cursor.close()
-    return nombreX
+    return resultados
+
   
   # def elimina_llamadas(self, llamada):
   #   cursor = self.conexion.cursor()
@@ -35,21 +36,23 @@ class Comunicacion():
   #   cursor.close()
   def elimina_llamadas(self, llamada):
       cursor = self.conexion.cursor()
-      bd = '''DELETE FROM tabla_datos WHERE num_orden = {}'''.format(llamada)
+      bd = '''DELETE FROM tabla_datos WHERE tarjeta = {}'''.format(llamada)
       print("Consulta SQL:", bd) 
       print("Valor de llamada:", llamada) 
       cursor.execute(bd)
       self.conexion.commit()
       cursor.close()
 
-  def actualiza_llamadas(self, Id, orden, cliente, motivo, fecha, estado, estado_nuevo):
+
+  def actualiza_llamadas(self, Id, tarjta, cliente, tipo_tarjeta, saldo, estado):
     cursor = self.conexion.cursor()
-    bd = '''UPDATE tabla_datos SET num_orden ='{}', cliente ='{}', motivo ='{}', fecha ='{}', estado ='{}'
-    WHERE id = '{}' '''.format(orden, cliente, motivo, fecha, estado_nuevo, Id)
+    bd = '''UPDATE tabla_datos SET tarjeta ='{}', cliente ='{}', tipo_tarjeta ='{}', saldo ='{}', estado ='{}'
+    WHERE id = '{}' '''.format( tarjta, cliente, tipo_tarjeta, saldo, estado, Id)
     cursor.execute(bd)
     a = cursor.rowcount
     self.conexion.commit()
     cursor.close()
     return a
+
 
   

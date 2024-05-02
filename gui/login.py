@@ -1,9 +1,10 @@
+import sys
 from PyQt6 import uic 
-from PyQt6.QtWidgets import QMessageBox, QLineEdit
+from PyQt6.QtWidgets import QMessageBox, QLineEdit, QApplication
 
 from data.usuario import UsuarioData
 from gui.atencion import AtencionWindow
-from gui.main import MainWindow
+from gui.finanzas import FinanzasWindow
 from gui.logistica import LogisticaWindow
 from gui.gestion import GestionWindow
 from model.usuario import Usuario
@@ -12,9 +13,10 @@ class Login():
   def __init__(self):
     self.login = uic.loadUi("gui/login.ui")
     self.initGUI()
-    self.login.lblMensaje.setText("")
-    self.login.show()
     self.login.check_view_password.toggled.connect(self.mostrar_contrasena)
+    self.login.lblMensaje.setText("")
+    self.login.exec()
+
     
   def ingresar(self):
     if len(self.login.txtUsuario.text()) < 2:
@@ -34,10 +36,11 @@ class Login():
         # Mostrar la ventana correspondiente al rol
         if rol == 'gestion':
           self.gestion = GestionWindow()
+          self.gestion.show() 
         elif rol == 'logistica':
           self.logistica = LogisticaWindow()
-        elif rol == 'administrador':
-          self.main = MainWindow()
+        elif rol == 'finanzas':
+          self.finanzas = FinanzasWindow()
         elif rol == 'atencion':
           self.atencion = AtencionWindow()
           self.atencion.show() 
@@ -51,9 +54,16 @@ class Login():
   def initGUI(self):
     self.login.btnAcceder.clicked.connect(self.ingresar)
 
-
   def mostrar_contrasena(self, clicked):
     if clicked:
         self.login.txtClave.setEchoMode(QLineEdit.EchoMode.Normal)
     else:
         self.login.txtClave.setEchoMode(QLineEdit.EchoMode.Password)
+  
+  
+if __name__  == '__main__':
+    app = QApplication(sys.argv)
+    ventana_Login = Login()
+    ventana_Login.show()
+    sys.exit(app.exec())
+
