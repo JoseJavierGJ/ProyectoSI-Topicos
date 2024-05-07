@@ -3,15 +3,15 @@ import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QHeaderView, QMessageBox, QPushButton
 from PyQt6 import QtWidgets
 from PyQt6.uic import loadUi
-from conexion_atencion import Comunicacion
+from conexion_empleado import Comunicacion
 from PyQt6.QtCore import QDate
 
 # from PyQt6 import uic 
 
-class AtencionWindow(QMainWindow):
+class EmpleadoWindow(QMainWindow):
   def __init__(self):
-    super(AtencionWindow, self).__init__()
-    loadUi('gui/atencion.ui', self)
+    super(EmpleadoWindow, self).__init__()
+    loadUi('gui/empleado.ui', self)
     self.llamada = None
     self.Id = None
     
@@ -23,23 +23,23 @@ class AtencionWindow(QMainWindow):
     self.btn_refrescar.clicked.connect(self.mostrar_llamadas)
     self.btn_agregar.clicked.connect(self.registrar_llamadas)
     self.btn_borrar.clicked.connect(self.elimina_llamadas)
-    self.btn_actualiza_tabla.clicked.connect(self.modificar_llamadas)
-    self.btn_actualiza_buscar.clicked.connect(self.buscar_por_nombre_actualizar)
+    # self.btn_actualiza_tabla.clicked.connect(self.modificar_llamadas)
+    # self.btn_actualiza_buscar.clicked.connect(self.buscar_por_nombre_actualizar)
     self.btn_buscar_borrar.clicked.connect(self.buscar_por_nombre_eliminar)
 
     # Conecta las señales a las ranuras
     self.btn_datos.clicked.connect(lambda: self.mostrar_llamadas())
     self.btn_registrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_registrar))
-    self.btn_actualizar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_actualizar))
+    # self.btn_actualizar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_actualizar))
     self.btn_eliminar.clicked.connect(lambda: self.mostrar_todos_para_eliminar())  # Modificado aquí
-    self.btn_ajustes.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_ajustes))
+    # self.btn_ajustes.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_ajustes))
 
     # Conección botones
     self.btn_datos.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_datos))
     self.btn_registrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_registrar))
-    self.btn_actualizar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_actualizar))
+    # self.btn_actualizar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_actualizar))
     self.btn_eliminar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_eliminar))
-    self.btn_ajustes.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_ajustes))
+    # self.btn_ajustes.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_ajustes))
 
     # Ancho de columna adaptable
     self.tabla_borrar.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
@@ -66,76 +66,43 @@ class AtencionWindow(QMainWindow):
       self.tabla_llamadas.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[3]))
       self.tabla_llamadas.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(row[4]))
       self.tabla_llamadas.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[5]))
+      self.tabla_llamadas.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[6]))
+      self.tabla_llamadas.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(row[7]))
+      self.tabla_llamadas.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(row[8]))
+      self.tabla_llamadas.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(row[9]))
       tablerow +=1
-      self.signal_actualizar.setText("")
+      # self.signal_actualizar.setText("")
       self.signal_registrar.setText("")
       self.signal_eliminacion.setText("")
   
+  
   # En la función registrar_llamadas:
   def registrar_llamadas(self):
-    orden = self.reg_orden.text().upper()
-    cliente = self.reg_cliente.text().upper()
-    motivo = self.reg_motivo.currentText().upper()
-    fecha = self.reg_fecha.date().toPyDate()
-    estado = self.reg_estatus.currentText().upper()  # Usa currentText() para obtener el texto seleccionado
-    if estado == "--- Seleccione una opción":
-        QMessageBox.warning(self, "Advertencia", "Debe seleccionar un estado válido.")
-        return
-    if orden != '' and cliente != '' and motivo != '' and fecha != '' and estado != '':
-        self.base_datos.inserta_llamada(orden, cliente, motivo, fecha, estado)
+    num_empleado = self.reg_nEmpleado.text().upper()
+    nombre = self.reg_nombre.text().upper()
+    genero = self.reg_genero.currentText().upper()  
+    fecha_admision  = self.reg_fecha.date().toPyDate()
+    oficio = self.reg_oficio.currentText().upper()  
+    telefono = self.reg_telefono.text().upper()
+    num_oficina = self.reg_nOficina.text().upper()
+    salario = self.reg_salario.text().upper()
+    comision = self.reg_comision.text().upper()
+    if num_empleado != '' and nombre != '' and genero != '' and fecha_admision != '' and oficio != '' and telefono != '' and num_oficina != '' and salario != '' and comision != '':
+        self.base_datos.inserta_llamada(num_empleado, nombre, genero, fecha_admision, oficio, telefono, num_oficina, salario, comision)
         self.signal_registrar.setText('Cliente Registrado')
-        self.reg_orden.clear()
-        self.reg_cliente.clear()
-        self.reg_motivo.setCurrentIndex(0)
-        self.reg_estatus.setCurrentIndex(0)
-        # Limpia la fecha seleccionada si es necesario
+        self.reg_nEmpleado.clear()
+        self.reg_nombre.clear()
+        self.reg_genero.setCurrentIndex(0)
+        self.reg_oficio.setCurrentIndex(0)
+        self.reg_telefono.clear()
+        self.reg_nOficina.clear()
+        self.reg_salario.clear()
+        self.reg_comision.clear()
         self.reg_fecha.setDate(QDate.currentDate())
     else:
         self.signal_registrar.setText('Hay espacios vacios')
 
 
-  def buscar_por_nombre_actualizar(self):
-    id_llamada = self.act_buscar.text().upper()
-    id_llamada = str("'" + id_llamada + "'")
-    self.llamada = self.base_datos.busca_llamadas(id_llamada)
-    if len(self.llamada) != 0:
-      self.Id = self.llamada[0][0]
-      self.act_orden.setText(self.llamada[0][1])
-      self.act_cliente.setText(self.llamada[0][2])
-      self.act_motivo.setText(self.llamada[0][3])
-      self.act_fecha.setText(self.llamada[0][4])
-      self.act_estatus.setText(self.llamada[0][5])
-    else:
-      self.signal_actualizar.setText("No existe")
-    
-  def modificar_llamadas(self):
-    if self.llamada != '':
-      orden = self.act_orden.text().upper()
-      cliente = self.act_cliente.text().upper()
-      motivo = self.act_motivo.text().upper()
-      fecha = self.act_fecha.text().upper()
-      estado = self.act_estatus_nuevo.currentText().upper()
-      estado_nuevo = self.act_estatus_nuevo.currentText().upper()
-      if estado_nuevo == "--- Seleccione una opción":
-            QMessageBox.warning(self, "Advertencia", "Debe seleccionar un estado válido.")
-            return
-      act = self.base_datos.actualiza_llamadas(self.Id, orden, cliente, motivo, fecha, estado, estado_nuevo)
-      if act == 1:
-        self.signal_actualizar.setText("Actualizado")
-        self.act_orden.clear()
-        self.act_cliente.clear()
-        self.act_motivo.clear()
-        self.act_fecha.clear()
-        self.act_estatus.clear()
-        self.act_estatus_nuevo.setCurrentIndex(0)
-        self.act_buscar.clear()
-      elif act == 0:
-        self.signal_actualizar.setText("Error")
-      else:
-        self.signal_actualizar.setText("Incorrecto")
-    else:
-        # Mensaje de advertencia si no hay llamada seleccionada
-        QMessageBox.warning(self, "Advertencia", "No hay llamada seleccionada para modificar.")
     
   def buscar_por_nombre_eliminar(self):
     nombre_llamada = self.eliminar_buscar.text().upper()
@@ -155,6 +122,10 @@ class AtencionWindow(QMainWindow):
       self.tabla_borrar.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
       self.tabla_borrar.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
       self.tabla_borrar.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
+      self.tabla_borrar.setItem(tablerow,5,QtWidgets.QTableWidgetItem(row[6]))
+      self.tabla_borrar.setItem(tablerow,6,QtWidgets.QTableWidgetItem(row[7]))
+      self.tabla_borrar.setItem(tablerow,7,QtWidgets.QTableWidgetItem(row[8]))
+      self.tabla_borrar.setItem(tablerow,8,QtWidgets.QTableWidgetItem(row[9]))
       tablerow +=1
 
   def elimina_llamadas(self):
@@ -172,6 +143,8 @@ class AtencionWindow(QMainWindow):
       else:
           QMessageBox.warning(self, "Advertencia", "Por favor, seleccione una llamada para eliminar.")
 
+  
+
   def mostrar_todos_para_eliminar(self):
     datos = self.base_datos.mostrar_llamadas()
     i = len(datos)
@@ -183,10 +156,14 @@ class AtencionWindow(QMainWindow):
         self.tabla_borrar.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[3]))
         self.tabla_borrar.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[4])))
         self.tabla_borrar.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[5]))
+        self.tabla_borrar.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[6]))
+        self.tabla_borrar.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(row[7]))
+        self.tabla_borrar.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(row[8]))
+        self.tabla_borrar.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(row[9]))
         tablerow += 1
 
 if __name__  == '__main__':
     app = QApplication(sys.argv)
-    ventana_atencion = AtencionWindow()  # Renombrar la instancia
-    ventana_atencion.show()
+    ventana_atencion = EmpleadoWindow()  # Renombrar la instancia
+    ventana_atencion.showMaximized()
     sys.exit(app.exec())

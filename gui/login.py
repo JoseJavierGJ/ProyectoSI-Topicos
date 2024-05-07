@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import QMessageBox, QLineEdit, QApplication
 
 from data.usuario import UsuarioData
 from gui.atencion import AtencionWindow
+from gui.empleado import EmpleadoWindow
 from gui.finanzas import FinanzasWindow
 from gui.logistica import LogisticaWindow
 from gui.gestion import GestionWindow
@@ -43,6 +44,9 @@ class Login():
           self.finanzas = FinanzasWindow()
         elif rol == 'atencion':
           self.atencion = AtencionWindow()
+          self.atencion.show()
+        elif rol == 'empleado':
+          self.atencion = EmpleadoWindow()
           self.atencion.show() 
         else:
           QMessageBox.warning(self.login, "Error", "Rol no válido")

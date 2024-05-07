@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>734</width>
-    <height>455</height>
+    <width>1239</width>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Gestión de Tarjetas</string>
+   <string>Información Empleados</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -41,7 +41,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,8">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,8">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -88,22 +88,6 @@ border-radius: 20px;
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_10">
           <item>
-           <widget class="QLineEdit" name="act_tarjeta">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>1</width>
-              <height>1</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QLabel" name="label_16">
             <property name="maximumSize">
              <size>
@@ -126,6 +110,22 @@ border-radius: 20px;
            </widget>
           </item>
           <item>
+           <widget class="QLineEdit" name="act_orden">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>1</width>
+              <height>1</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_7">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -142,7 +142,7 @@ border-radius: 20px;
            <widget class="QLabel" name="label_19">
             <property name="maximumSize">
              <size>
-              <width>170</width>
+              <width>235</width>
               <height>16777215</height>
              </size>
             </property>
@@ -157,7 +157,7 @@ border-radius: 20px;
 color: rgb(0, 0, 0);</string>
             </property>
             <property name="text">
-             <string>Gestión de Tarjetas</string>
+             <string>Información De Empleados</string>
             </property>
            </widget>
           </item>
@@ -285,19 +285,6 @@ font: 77 10pt &quot;Arial Black&quot;;
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="btn_actualizar">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Actualizar</string>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QPushButton" name="btn_eliminar">
                <property name="minimumSize">
                 <size>
@@ -307,19 +294,6 @@ font: 77 10pt &quot;Arial Black&quot;;
                </property>
                <property name="text">
                 <string>Eliminar</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_ajustes">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
                </property>
               </widget>
              </item>
@@ -406,14 +380,14 @@ border: 1px solid rgb(0, 206, 151);
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="currentIndex">
-                <number>1</number>
+                <number>4</number>
                </property>
                <widget class="QWidget" name="page_datos">
                 <layout class="QVBoxLayout" name="verticalLayout_5">
                  <item>
                   <widget class="QLabel" name="label">
                    <property name="text">
-                    <string>Gestión de Tarjetas</string>
+                    <string>Datos de los empleados</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -423,32 +397,51 @@ border: 1px solid rgb(0, 206, 151);
                  <item>
                   <widget class="QTableWidget" name="tabla_llamadas">
                    <property name="styleSheet">
-                    <string notr="true">color: rgb(255, 255, 255);
-</string>
+                    <string notr="true">color: rgb(255, 255, 255);</string>
                    </property>
                    <column>
                     <property name="text">
-                     <string>No. Tarjeta</string>
+                     <string>No. Empleado</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Cliente</string>
+                     <string>Nombre</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Tipo de tarjeta</string>
+                     <string>Género</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Saldo</string>
+                     <string>Fecha de Inicio</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Estatus</string>
+                     <string>Oficio</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Teléfono</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>No. Oficina</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Salario</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Comisión</string>
                     </property>
                    </column>
                   </widget>
@@ -486,291 +479,14 @@ border: 1px solid rgb(0, 206, 151);
                 </layout>
                </widget>
                <widget class="QWidget" name="page_actualizar">
-                <layout class="QVBoxLayout" name="verticalLayout_11">
-                 <item>
-                  <widget class="QLabel" name="label_15">
-                   <property name="text">
-                    <string>Actualizar Tarjeta</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_7">
-                   <item>
-                    <widget class="QLabel" name="label_17">
-                     <property name="text">
-                      <string>No. Tarjeta</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLineEdit" name="act_buscar"/>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="btn_actualiza_buscar">
-                     <property name="minimumSize">
-                      <size>
-                       <width>80</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string>Buscar</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <spacer name="verticalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_5">
-                   <item>
-                    <layout class="QVBoxLayout" name="verticalLayout_10">
-                     <property name="spacing">
-                      <number>30</number>
-                     </property>
-                     <item>
-                      <widget class="QLabel" name="label_10">
-                       <property name="text">
-                        <string>Estatus Actual</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_11">
-                       <property name="text">
-                        <string>Cliente</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_12">
-                       <property name="text">
-                        <string>Tipo de Tarjeta</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_13">
-                       <property name="text">
-                        <string>Saldo</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_14">
-                       <property name="text">
-                        <string>Nuevo Estatus</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <layout class="QVBoxLayout" name="verticalLayout_9">
-                     <property name="spacing">
-                      <number>30</number>
-                     </property>
-                     <item>
-                      <widget class="QLineEdit" name="act_estado">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>0</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>400</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="act_cliente">
-                       <property name="minimumSize">
-                        <size>
-                         <width>260</width>
-                         <height>0</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="act_tipo_tarjeta"/>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="act_saldo">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>0</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>120</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QComboBox" name="act_estado_nuevo">
-                       <property name="maximumSize">
-                        <size>
-                         <width>200</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <pointsize>11</pointsize>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);</string>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>--- Seleccione una opción</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Activa</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Bloqueada</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Cancelada</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Vencida</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Perdida o Robada</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>En proceso de emisión</string>
-                        </property>
-                       </item>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <spacer name="horizontalSpacer_5">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <spacer name="verticalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_6">
-                   <item>
-                    <widget class="QLabel" name="signal_actualizar">
-                     <property name="minimumSize">
-                      <size>
-                       <width>120</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <spacer name="horizontalSpacer_4">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="btn_actualiza_tabla">
-                     <property name="minimumSize">
-                      <size>
-                       <width>120</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string>Actualizar</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                </layout>
+                <layout class="QVBoxLayout" name="verticalLayout_11"/>
                </widget>
                <widget class="QWidget" name="page_eliminar">
                 <layout class="QVBoxLayout" name="verticalLayout_12">
                  <item>
                   <widget class="QLabel" name="label_9">
                    <property name="text">
-                    <string>Eliminar Tarjeta</string>
+                    <string>Eliminar Empleado</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -782,7 +498,7 @@ border: 1px solid rgb(0, 206, 151);
                    <item>
                     <widget class="QLabel" name="label_18">
                      <property name="text">
-                      <string>No. Orden</string>
+                      <string>No. Empleado</string>
                      </property>
                     </widget>
                    </item>
@@ -811,27 +527,47 @@ border: 1px solid rgb(0, 206, 151);
                    </property>
                    <column>
                     <property name="text">
-                     <string>No. Tarjeta</string>
+                     <string>No. Empleado</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Cliente</string>
+                     <string>Nombre</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Tipo de Tarjeta</string>
+                     <string>Género</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Saldo</string>
+                     <string>Fecha de Inicio</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Estatus</string>
+                     <string>Oficio</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Télefono</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>No. Oficina</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Salario</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Comisión</string>
                     </property>
                    </column>
                   </widget>
@@ -887,7 +623,7 @@ border: 1px solid rgb(0, 206, 151);
                  <item>
                   <widget class="QLabel" name="label_7">
                    <property name="text">
-                    <string>Registrar Tarjeta</string>
+                    <string>Registrar Nuevo Empleado</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -917,35 +653,63 @@ border: 1px solid rgb(0, 206, 151);
                      <item>
                       <widget class="QLabel" name="label_2">
                        <property name="text">
-                        <string>Tarjeta</string>
+                        <string>No. Empleado</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QLabel" name="label_3">
                        <property name="text">
-                        <string>Cliente</string>
+                        <string>Nombre</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QLabel" name="label_5">
                        <property name="text">
-                        <string>Tipo de tarjeta</string>
+                        <string>Género</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_8">
+                       <property name="text">
+                        <string>Fecha de inicio</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_20">
+                       <property name="text">
+                        <string>Oficio</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QLabel" name="label_4">
                        <property name="text">
-                        <string>Saldo</string>
+                        <string>Teléfono</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QLabel" name="label_6">
                        <property name="text">
-                        <string>Estatus</string>
+                        <string>No. Oficina</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_21">
+                       <property name="text">
+                        <string>Salario</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_22">
+                       <property name="text">
+                        <string>Comisión</string>
                        </property>
                       </widget>
                      </item>
@@ -957,13 +721,13 @@ border: 1px solid rgb(0, 206, 151);
                       <number>30</number>
                      </property>
                      <item>
-                      <widget class="QLineEdit" name="reg_tarjeta"/>
+                      <widget class="QLineEdit" name="reg_nEmpleado"/>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="reg_cliente"/>
+                      <widget class="QLineEdit" name="reg_nombre"/>
                      </item>
                      <item>
-                      <widget class="QComboBox" name="reg_tipo_tarjeta">
+                      <widget class="QComboBox" name="reg_genero">
                        <property name="maximumSize">
                         <size>
                          <width>400</width>
@@ -985,24 +749,62 @@ border: 1px solid rgb(0, 206, 151);
                        </item>
                        <item>
                         <property name="text">
-                         <string>Debito</string>
+                         <string>Masculino</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>Credito</string>
+                         <string>Femenino</string>
                         </property>
                        </item>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="reg_saldo"/>
-                     </item>
-                     <item>
-                      <widget class="QComboBox" name="reg_estado">
+                      <widget class="QDateEdit" name="reg_fecha">
                        <property name="maximumSize">
                         <size>
-                         <width>200</width>
+                         <width>110</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>11</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(255, 255, 255);</string>
+                       </property>
+                       <property name="readOnly">
+                        <bool>false</bool>
+                       </property>
+                       <property name="dateTime">
+                        <datetime>
+                         <hour>6</hour>
+                         <minute>0</minute>
+                         <second>0</second>
+                         <year>2024</year>
+                         <month>4</month>
+                         <day>7</day>
+                        </datetime>
+                       </property>
+                       <property name="calendarPopup">
+                        <bool>true</bool>
+                       </property>
+                       <property name="date">
+                        <date>
+                         <year>2024</year>
+                         <month>4</month>
+                         <day>7</day>
+                        </date>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="reg_oficio">
+                       <property name="maximumSize">
+                        <size>
+                         <width>400</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -1021,35 +823,57 @@ border: 1px solid rgb(0, 206, 151);
                        </item>
                        <item>
                         <property name="text">
-                         <string>Activa</string>
+                         <string>Ejecutivo de ventas</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>Bloqueada</string>
+                         <string>Gestor de cuentas</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>Cancelada</string>
+                         <string>Cajero</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>Vencida</string>
+                         <string>Atención al cliente</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>Perdida o Robada</string>
+                         <string>Logística y operaciones</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>En proceso de emisión</string>
+                         <string>Recursos humanos</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Marketing y comunicaciones</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Tecnología de la información</string>
                         </property>
                        </item>
                       </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="reg_telefono"/>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="reg_nOficina"/>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="reg_salario"/>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="reg_comision"/>
                      </item>
                     </layout>
                    </item>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Atención al Cliente</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -88,22 +88,6 @@ border-radius: 20px;
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_10">
           <item>
-           <widget class="QLineEdit" name="act_orden">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>1</width>
-              <height>1</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QLabel" name="label_16">
             <property name="maximumSize">
              <size>
@@ -126,14 +110,66 @@ border-radius: 20px;
            </widget>
           </item>
           <item>
+           <widget class="QLineEdit" name="act_orden">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>1</width>
+              <height>1</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_7">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>465</width>
-              <height>19</height>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_19">
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Monotype Koufi</family>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 170, 0);
+color: rgb(0, 0, 0);</string>
+            </property>
+            <property name="text">
+             <string>Atención al Cliente</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -370,7 +406,7 @@ border: 1px solid rgb(0, 206, 151);
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="page_datos">
                 <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -470,7 +506,14 @@ border: 1px solid rgb(0, 206, 151);
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="act_buscar"/>
+                    <widget class="QLineEdit" name="act_buscar">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="btn_actualiza_buscar">

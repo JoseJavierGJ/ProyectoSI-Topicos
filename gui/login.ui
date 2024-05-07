@@ -146,7 +146,7 @@
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>finanzas</string>
+    <string/>
    </property>
    <property name="placeholderText">
     <string>Ingrese un usuario</string>
@@ -170,7 +170,7 @@
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>123456</string>
+    <string/>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>

@@ -1,7 +1,8 @@
 from PyQt6 import uic 
 from PyQt6.QtWidgets import QMessageBox
+from PyQt6.uic import loadUi
 
 class LogisticaWindow():
   def __init__(self):
-    self.main = uic.loadUi("gui/logistica.ui")
-    self.main.show()
+    super(LogisticaWindow, self).__init__()
+    loadUi('gui/atencion.ui', self)
