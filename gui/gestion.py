@@ -1,12 +1,10 @@
-# from PyQt6.QtCore import QPropertyAnimation, QEasingCurve
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QHeaderView, QMessageBox
 from PyQt6 import QtWidgets
 from PyQt6.uic import loadUi
+from PyQt6.QtGui import QIntValidator, QRegularExpressionValidator
+from PyQt6.QtCore import QDate, QRegularExpression
 from conexion_gestion import Comunicacion
-from PyQt6.QtCore import QDate
-
-# from PyQt6 import uic 
 
 class GestionWindow(QMainWindow):
     
@@ -18,7 +16,7 @@ class GestionWindow(QMainWindow):
         
         self.base_datos = Comunicacion()
 
-         # Botones
+        # Botones
         self.btnSalir.clicked.connect(self.abrir_login)
         self.btn_refrescar.clicked.connect(self.mostrar_llamadas)
         self.btn_agregar.clicked.connect(self.registrar_llamadas)
@@ -31,10 +29,10 @@ class GestionWindow(QMainWindow):
         self.btn_datos.clicked.connect(lambda: self.mostrar_llamadas())
         self.btn_registrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_registrar))
         self.btn_actualizar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_actualizar))
-        self.btn_eliminar.clicked.connect(lambda: self.mostrar_todos_para_eliminar())  # Modificado aquí
+        self.btn_eliminar.clicked.connect(lambda: self.mostrar_todos_para_eliminar())
         self.btn_ajustes.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_ajustes))
 
-        # Conección botones
+        # Conexión botones
         self.btn_datos.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_datos))
         self.btn_registrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_registrar))
         self.btn_actualizar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_actualizar))
@@ -45,13 +43,26 @@ class GestionWindow(QMainWindow):
         self.tabla_borrar.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.tabla_llamadas.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
+        # Validaciones
+        regex_12_digits = QRegularExpression(r'\d{12}')
+        self.reg_tarjeta.setValidator(QRegularExpressionValidator(regex_12_digits, self))
+        self.reg_tarjeta.setMaxLength(12)
+        self.reg_saldo.setValidator(QRegularExpressionValidator(QRegularExpression(r'\d+(\.\d{1,2})?'), self))
+        self.act_buscar.setValidator(QRegularExpressionValidator(regex_12_digits, self))
+        self.act_buscar.setMaxLength(12)
+        self.eliminar_buscar.setValidator(QRegularExpressionValidator(regex_12_digits, self))
+        self.eliminar_buscar.setMaxLength(12)
+
+        # Deshabilitar campos en la sección de actualización
+        self.act_tarjeta.setDisabled(True)
+        self.act_cliente.setDisabled(True)
+        self.act_tipo_tarjeta.setDisabled(True)
+        self.act_saldo.setDisabled(True)
+        self.act_estado.setDisabled(True)
+
         # Mostrar datos al abrir la ventana
         self.mostrar_llamadas()     
         
-    # def abrir_login(self):
-    #     self.login_window.show()
-    #     self.close()
-    
     def abrir_login(self):
         self.close()
         from gui.login import Login
@@ -70,7 +81,7 @@ class GestionWindow(QMainWindow):
             self.tabla_llamadas.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[3]))
             self.tabla_llamadas.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(row[4]))
             self.tabla_llamadas.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[5]))
-            tablerow +=1
+            tablerow += 1
             self.signal_actualizar.setText("")
             self.signal_registrar.setText("")
             self.signal_eliminacion.setText("")
@@ -86,14 +97,14 @@ class GestionWindow(QMainWindow):
             return
         if tarjeta != '' and cliente != '' and tipo_tarjeta != '' and saldo != '' and estado != '':
             self.base_datos.inserta_llamada(tarjeta, cliente, tipo_tarjeta, saldo, estado)
-            self.signal_registrar.setText('Cliente Registrado')
+            self.signal_registrar.setText('Tarjeta Registrada')
             self.reg_tarjeta.clear()
             self.reg_cliente.clear()
             self.reg_tipo_tarjeta.setCurrentIndex(0)
             self.reg_saldo.clear()
             self.reg_estado.setCurrentIndex(0)
         else:
-            self.signal_registrar.setText('Hay espacios vacios')
+            self.signal_registrar.setText('Hay espacios vacíos')
 
     def buscar_por_nombre_actualizar(self):
         id_llamada = self.act_buscar.text().upper()
@@ -134,7 +145,7 @@ class GestionWindow(QMainWindow):
             else:
                 self.signal_actualizar.setText("Incorrecto")
         else:
-            QMessageBox.warning(self, "Advertencia", "No hay llamada seleccionada para modificar.")
+            QMessageBox.warning(self, "Advertencia", "No hay tarjeta seleccionada para modificar.")
         
     def buscar_por_nombre_eliminar(self):
         tarjeta = self.eliminar_buscar.text().upper()
@@ -145,16 +156,16 @@ class GestionWindow(QMainWindow):
         if len(llamada) == 0:
             self.signal_eliminacion.setText('No existe')
         else:
-            self.signal_eliminacion.setText('Llamada seleccionada')
+            self.signal_eliminacion.setText('Tarjeta seleccionada')
         tablerow = 0
         for row in llamada:
             self.llamada_a_borrar = row[1]
-            self.tabla_borrar.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
-            self.tabla_borrar.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
-            self.tabla_borrar.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
-            self.tabla_borrar.setItem(tablerow,3,QtWidgets.QTableWidgetItem(str(row[4])))
-            self.tabla_borrar.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
-            tablerow +=1
+            self.tabla_borrar.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[1]))
+            self.tabla_borrar.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[2]))
+            self.tabla_borrar.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[3]))
+            self.tabla_borrar.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[4])))
+            self.tabla_borrar.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[5]))
+            tablerow += 1
     
     def elimina_llamadas(self):
       # Verifica si hay una fila seleccionada en la tabla
@@ -166,10 +177,10 @@ class GestionWindow(QMainWindow):
             self.base_datos.elimina_llamadas("'" + self.llamada_a_borrar + "'")
             # Elimina la fila de la tabla
             self.tabla_borrar.removeRow(self.row_flag)
-            self.signal_eliminacion.setText('Llamada eliminada')
+            self.signal_eliminacion.setText('Tarjeta eliminada')
             self.eliminar_buscar.setText('')
         else:
-            QMessageBox.warning(self, "Advertencia", "Por favor, seleccione una llamada para eliminar.")
+            QMessageBox.warning(self, "Advertencia", "Por favor, seleccione una tarjeta para eliminar.")
     
     
     def mostrar_todos_para_eliminar(self):
